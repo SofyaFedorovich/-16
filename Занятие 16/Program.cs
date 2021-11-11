@@ -6,11 +6,21 @@ using System.Threading.Tasks;
 using System.Text.Json;
 
 namespace Занятие_16
-{
+{   //разработать класс для моделирования объекта "Товар"
+    class Products
+    {
+        int code; //код товара
+        string name; //название товара
+        double price; // цена товара
+
+    }
     class Program
-    {//разработать класс для моделирования объекта "Товар"
+    {
+       
         static void Main(string[] args)
         {
+            Products products=new Products { }
+
         }
     }
 }
