@@ -16,26 +16,28 @@ namespace Занятие_16
     }
     class Program
     {
-       
+
         static void Main(string[] args)
         {
             Products products = new Products();
-            Console.WriteLine("Номер товара от 1 до 5:");
-            int n = int.Parse(Console.ReadLine());
             Console.WriteLine("Ввести код товара:");
             int code = int.Parse(Console.ReadLine());
             Console.WriteLine("Ввести название товара:");
             string name = Convert.ToString(Console.ReadLine());
             Console.WriteLine("Ввести цену товара:");
             double price = double.Parse(Console.ReadLine());
+            const int n = 5;
+            const int m = 3;
 
-            int[,] array = new int[5, 3];
+
+            int[,] array = new int[n, m];
             Console.WriteLine("Массив записи информации Products");
+            code[0]
             for (int i = 0; i < n; i++)
             {
-                for (int j = 0; j < n; j++)
+                for (int j = 0; j < m; j++)
                 {
-                    array[i, j] = random.Next(0, 2);
+                    array[i, j] 
                     Console.Write("{0}", array[i, j]);
                 }
                 Console.WriteLine();
