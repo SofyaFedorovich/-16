@@ -4,45 +4,53 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Text.Json;
+using System.IO;
 
 namespace Занятие_16
-{   //разработать класс для моделирования объекта "Товар"
-    class Products
+{
+    class Products //разработать класс для моделирования объекта "Товар"
     {
-        int code; //код товара
-        string name; //название товара
-        double price; // цена товара
+        int code;
+        string name;
+        double price;
 
+        public int Code { get; set; }
+        public string Name { get; set; }
+        public double Price { get; set; }
+
+        void products(int code, string name, double price) //конструктор
+        {
+            this.code = code;
+            this.name = name;
+            this.price = price;
+        }
     }
     class Program
     {
-
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
             Products products = new Products();
             Console.WriteLine("Ввести код товара:");
-            int code = int.Parse(Console.ReadLine());
+            products.Code = int.Parse(Console.ReadLine());
             Console.WriteLine("Ввести название товара:");
-            string name = Convert.ToString(Console.ReadLine());
+            products.Name = Convert.ToString(Console.ReadLine());
             Console.WriteLine("Ввести цену товара:");
-            double price = double.Parse(Console.ReadLine());
+            products.Price = double.Parse(Console.ReadLine());
+
             const int n = 5;
-            const int m = 3;
-
-
-            int[,] array = new int[n, m];
-            Console.WriteLine("Массив записи информации Products");
-            code[0]
+            int[] arrayCode = new int[5];
             for (int i = 0; i < n; i++)
             {
-                for (int j = 0; j < m; j++)
-                {
-                    array[i, j] 
-                    Console.Write("{0}", array[i, j]);
-                }
-                Console.WriteLine();
+                Console.WriteLine("Введите коды товаров {0}", i );
+                arrayCode[i] = int.Parse (Console.ReadLine());
             }
-
+            string jsonString = JsonSerializer.Serialize<Products>(products);
+            Console.WriteLine(jsonString);
+            using (FileStream fs = new FileStream("user.json", FileMode.OpenOrCreate))
+            {               
+                await JsonSerializer.SerializeAsync<Products>(fs, products);
+                Console.WriteLine("Data has been saved to file");
+            }
             Console.ReadKey();
 
         }
