@@ -37,19 +37,19 @@ namespace Занятие_16
             Console.WriteLine("Ввести цену товара:");
             products.Price = double.Parse(Console.ReadLine());
 
-            const int n = 5;
-            int[] arrayCode = new int[5];
-            for (int i = 0; i < n; i++)
+            const int n = 6;
+            int[] arrayCode = new int[6];
+            for (int i = 1; i < n; i++)
             {
                 Console.WriteLine("Введите коды товаров {0}", i );
                 arrayCode[i] = int.Parse (Console.ReadLine());
             }
             string jsonString = JsonSerializer.Serialize<Products>(products);
             Console.WriteLine(jsonString);
-            using (FileStream fs = new FileStream("user.json", FileMode.OpenOrCreate))
+            using (FileStream fs = new FileStream("Products.json", FileMode.OpenOrCreate))
             {               
                 await JsonSerializer.SerializeAsync<Products>(fs, products);
-                Console.WriteLine("Data has been saved to file");
+                Console.WriteLine("Данные сохранены в файл Products.json");
             }
             Console.ReadKey();
 
