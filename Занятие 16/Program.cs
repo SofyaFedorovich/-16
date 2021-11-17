@@ -44,21 +44,27 @@ namespace Занятие_16
                 arrayPrice[i] = products.Price;
                 Console.Write("{0,5}", arrayPrice[i]);
 
-        }
-           /* JsonDocumentOptions options = new JsonDocumentOptions();
-            {
-                Encoder = JavaScriptEncoder.Create(UnicodeRanges.BasicLatin, UnicodeRanges.Cyrillic),
-                WriteIndented = true
-            };*/
+            }
+            /* JsonDocumentOptions options = new JsonDocumentOptions();
+             {
+                 Encoder = JavaScriptEncoder.Create(UnicodeRanges.BasicLatin, UnicodeRanges.Cyrillic),
+                 WriteIndented = true
+             };*/
             string jsonString = JsonSerializer.Serialize<Products>(products);
             Console.WriteLine(jsonString);
             using (FileStream fs = new FileStream("Products.json", FileMode.OpenOrCreate))
-            {               
+            {
                 await JsonSerializer.SerializeAsync<Products>(fs, products);
                 Console.WriteLine("Данные сохранены в файл Products.json");
             }
-            Console.ReadKey();
 
+            using (FileStream fs = new FileStream("Products.json", FileMode.OpenOrCreate))
+            {
+                Products restoredProducts = await JsonSerializer.DeserializeAsync<Products>(fs);
+                Console.WriteLine($"Price: {restoredProducts.Price}  Code: {restoredProducts.Code} Name: {restoredProducts.Name}");
+            }
+
+            Console.ReadKey();
         }
     }
 }
