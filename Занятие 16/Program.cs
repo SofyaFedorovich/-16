@@ -23,9 +23,7 @@ namespace Занятие_16
             this.code = code;
             this.name = name;
             this.price = price;
-        }
-
-        
+        }              
     }
     class Program
     {
@@ -34,19 +32,24 @@ namespace Занятие_16
             Products products = new Products();
             Console.WriteLine("Ввести код товара:  ");
             products.Code = int.Parse(Console.ReadLine());
-            Console.WriteLine("Ввести название товара:  ");
+            Console.WriteLine("Ввести название товара латинскими буквами:  ");
             products.Name = Convert.ToString(Console.ReadLine());
             Console.WriteLine("Ввести цену товара:  ");
             products.Price = double.Parse(Console.ReadLine());
 
-            const int n = 6;
+            const int n = 5;
             double[] arrayPrice = new double[6];
-            for (int i = 1; i < n; i++)
+            for (int i = 1; i <= n; i++)
             {
-              
                 arrayPrice[i] = products.Price;
                 Console.Write("{0,5}", arrayPrice[i]);
+
         }
+           /* JsonDocumentOptions options = new JsonDocumentOptions();
+            {
+                Encoder = JavaScriptEncoder.Create(UnicodeRanges.BasicLatin, UnicodeRanges.Cyrillic),
+                WriteIndented = true
+            };*/
             string jsonString = JsonSerializer.Serialize<Products>(products);
             Console.WriteLine(jsonString);
             using (FileStream fs = new FileStream("Products.json", FileMode.OpenOrCreate))
