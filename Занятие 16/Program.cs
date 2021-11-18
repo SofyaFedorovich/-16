@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Text.Json;
 using System.IO;
+using System.Text.Unicode;
+using System.Text.Encodings.Web;
 
 namespace Занятие_16
 {
@@ -45,11 +47,12 @@ namespace Занятие_16
                 Console.Write("{0,5}", arrayPrice[i]);
 
             }
-            /* JsonDocumentOptions options = new JsonDocumentOptions();
+            JsonDocumentOptions options = new JsonDocumentOptions();
              {
-                 Encoder = JavaScriptEncoder.Create(UnicodeRanges.BasicLatin, UnicodeRanges.Cyrillic),
-                 WriteIndented = true
-             };*/
+                Encoder = JavaScriptEncoder.Create(UnicodeRanges.BasicLatin, UnicodeRanges.Cyrillic);
+                WriteIndented = true;
+             }
+
             string jsonString = JsonSerializer.Serialize<Products>(products);
             Console.WriteLine(jsonString);
             using (FileStream fs = new FileStream("Products.json", FileMode.OpenOrCreate))
