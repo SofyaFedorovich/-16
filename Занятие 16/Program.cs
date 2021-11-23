@@ -62,11 +62,11 @@ namespace Занятие_16
                 Console.WriteLine("Данные сохранены в файл Products.json");
             }
 
-            using (FileStream fs = new FileStream("Products.json", FileMode.OpenOrCreate))
-            {
-                Products restoredProducts = await JsonSerializer.DeserializeAsync<Products>(fs);
-                Console.WriteLine($"Price: {restoredProducts.Price}  Code: {restoredProducts.Code} Name: {restoredProducts.Name}");
-            }
+            //using (FileStream fs = new FileStream("Products.json", FileMode.OpenOrCreate))
+            //{
+            //    Products restoredProducts = await JsonSerializer.DeserializeAsync<Products>(fs);
+            //    Console.WriteLine($"Price: {restoredProducts.Price}  Code: {restoredProducts.Code} Name: {restoredProducts.Name}");
+            //}
 
             Console.ReadKey();
         }
